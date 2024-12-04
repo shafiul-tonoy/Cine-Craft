@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import MainLayouts from "../layouts/MainLayouts";
 import ErrorPage from "../pages/ErrorPage";
+import Login from "../pages/Login";
 
 const router = createBrowserRouter([
     {
@@ -8,11 +9,16 @@ const router = createBrowserRouter([
         element:<MainLayouts />,     
         errorElement:<ErrorPage />, 
         children:[
+            {
+                path:"login",
+                element:<Login />,
+            },
 
         ],
     },
 
-    //auth route start
+   
+    
 
 ])
 
