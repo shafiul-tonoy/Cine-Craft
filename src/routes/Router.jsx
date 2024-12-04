@@ -1,10 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
+import MainLayouts from "../layouts/MainLayouts";
 
 const router = createBrowserRouter([
     {
         path:"/",
-        element:"<p>hello world</p>"
+        element:<MainLayouts />,        
     },
 ])
 
 export default router
+
