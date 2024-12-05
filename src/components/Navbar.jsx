@@ -9,33 +9,33 @@ export default function Navbar() {
   const navItems = (
     <>
       <li>
-        <Link to="/" className="text-linksColor">
+        <NavLink to="/" className="text-linksColor">
           Home
-        </Link>
+        </NavLink>
       </li>
       <li>
-        <Link to="/" className="text-linksColor">
+        <NavLink to="/allMovies" className="text-linksColor">
           All Movies
-        </Link>
+        </NavLink>
       </li>
       {user && user?.email && (
         <>
           <li>
-            <Link to="/" className="text-linksColor">
+            <NavLink to="/addMovies" className="text-linksColor">
               Add Movies
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to="/" className="text-linksColor">
+            <NavLink to="/favorite" className="text-linksColor">
               My Favorites
-            </Link>
+            </NavLink>
           </li>
         </>
       )}
       <li>
-        <Link to="/" className="text-linksColor">
+        <NavLink to="/news" className="text-linksColor">
           News
-        </Link>
+        </NavLink>
       </li>
     </>
   );
@@ -82,7 +82,7 @@ export default function Navbar() {
                   <img
                     src={user.photoURL}
                     alt="image"
-                    className="w-10 h-10 rounded-full object-cover"
+                    className="w-10 h-10 rounded-full object-cover object-top"
                   ></img>
                 </div>
                 <button className="btn btn-ghost text-linksColor" onClick={logout}>

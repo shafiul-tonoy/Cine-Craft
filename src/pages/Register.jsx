@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
+import { success } from "../utility/toastMsg";
 
 export default function Register() {
   const { createNewUser, setUser, updateUserProfile, signInWithGoogle } =
@@ -33,7 +34,7 @@ export default function Register() {
         })
           .then(() => {
             navigate("/");
-            alert("success");
+            success()
           })
           .catch((err) => setError(err.code));
       })

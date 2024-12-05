@@ -1,5 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createContext, useState, useEffect } from "react";
+import { success } from "../utility/toastMsg";
 import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
@@ -42,7 +43,7 @@ export default function AuthProvider({ children }) {
   //logout
   const logout = () => {
     setLoading(true);
-
+    success()
     return signOut(auth);
   };
 

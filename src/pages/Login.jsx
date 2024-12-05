@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState, useContext, useRef } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import { useForm } from "react-hook-form";
+import { success } from "../utility/toastMsg";
 
 export default function Login() {
   const { login, setUser, signInWithGoogle, handleForgetPassword } =
