@@ -1,7 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import ThemeToggle from "./ThemeToggle";
+import { useContext } from "react";
+import { AuthContext } from "../providers/AuthProvider";
+import { PiSignOutLight, PiSignInLight  } from "react-icons/pi";
 
 export default function Navbar() {
+  const { user, logout } = useContext(AuthContext);
   const navItems = (
     <>
       <li>
@@ -9,21 +13,30 @@ export default function Navbar() {
           Home
         </Link>
       </li>
-
-      {/* {user && user?.email && (
-            <>
-              <li>
-                <Link to="/profile" className="text-linksColor">
-                  My Profile
-                </Link>
-              </li>
-              <li>
-                <Link to="/update" className="text-linksColor">
-                  Update Profile
-                </Link>
-              </li>
-            </>
-          )} */}
+      <li>
+        <Link to="/" className="text-linksColor">
+          All Movies
+        </Link>
+      </li>
+      {user && user?.email && (
+        <>
+          <li>
+            <Link to="/" className="text-linksColor">
+              Add Movies
+            </Link>
+          </li>
+          <li>
+            <Link to="/" className="text-linksColor">
+              My Favorites
+            </Link>
+          </li>
+        </>
+      )}
+      <li>
+        <Link to="/" className="text-linksColor">
+          News
+        </Link>
+      </li>
     </>
   );
 
@@ -60,8 +73,32 @@ export default function Navbar() {
         <ul className="menu menu-horizontal px-1">{navItems}</ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">Button</a>
-        <ThemeToggle />        
+      {user && user?.email ? (
+              <div className="flex items-center gap-1">
+                <div
+                  className="tooltip  tooltip-left"
+                  data-tip={user.displayName}
+                >
+                  <img
+                    src={user.photoURL}
+                    alt="image"
+                    className="w-10 h-10 rounded-full object-cover"
+                  ></img>
+                </div>
+                <button className="btn btn-ghost text-linksColor" onClick={logout}>
+                  Logout
+                  <PiSignOutLight  />
+                </button>
+              </div>
+            ) : (
+              <Link
+                to="/login"
+                className="btn btn-ghost "
+              > <PiSignInLight size="18" />
+                  <span className= 'text-linksColor' >Login</span>
+              </Link>
+            )}
+        <ThemeToggle />
       </div>
     </div>
   );
