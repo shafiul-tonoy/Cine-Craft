@@ -80,6 +80,8 @@ export default function Register() {
                   placeholder="Enter your name"
                   className="input input-bordered"
                   {...register("name", { required: true })}
+
+                  
                 />
                 {errors.name && (
                   <span className="text-red-500 m-2">
