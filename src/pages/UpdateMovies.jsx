@@ -1,57 +1,76 @@
 import { useForm, Controller } from "react-hook-form";
-import { useNavigate } from 'react-router-dom';
-import RatingComponent from "../components/RatingComponent";
+import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
-import Swal from 'sweetalert2'
+import RatingComponent from "../components/RatingComponent";
+import Swal from "sweetalert2";
+import { useLoaderData } from "react-router-dom";
 
-
-export default function AddMovies() {
-
-  
-
+export default function UpdateMovies() {
+  const movie = useLoaderData();
+  const {
+    _id,
+    title,
+    posterUrl,
+    genre,
+    duration,
+    releaseYear,
+    summary,
+    rating,
+    email,
+  } = movie || {};
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const {
     register,
     handleSubmit,
-    watch,   
+    watch,
     reset,
     control,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      title: title || "",
+      posterUrl: posterUrl || "",
+      genre: genre || "",
+      duration: duration || "",
+      releaseYear: releaseYear || "",
+      summary: summary || "",
+      rating: rating || 0,
+      email: email || "",
+    },
+  });
 
   const onSubmit = (data) => {
     const updatedData = { ...data, email: user.email };
 
-    fetch("http://localhost:5000/movies", {
-      method: "POST",
+    fetch(`http://localhost:5000/movies/${_id}`, {
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(updatedData),
     })
-    .then(res => res.json())
-    .then(data=>{
-      if (data.insertedId) {
-        navigate('/allMovies');
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Successful",
-          showConfirmButton: false,
-          timer: 1500
-        });
+      .then((res) => res.json())
+      .then((data) => {        
         
-      }    
-    })
+        if (data.modifiedCount) {
+          navigate("/allMovies");
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Successful",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
   };
 
   const genres = ["Action", "Comedy", "Drama", "Horror", "Sci-Fi", "Romance"];
 
   const currentYear = new Date().getFullYear();
   const years = Array.from({ length: 100 }, (_, index) => currentYear - index);
-
   return (
     <div className="w-full md:w-10/12 md:mx-auto p-5">
       {/* form start */}
@@ -60,7 +79,7 @@ export default function AddMovies() {
         className="p-6 bg-white shadow-md rounded-md max-w-md mx-auto space-y-4"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <h2 className="text-2xl font-bold text-center mb-4">Update Movie</h2>
+        <h2 className="text-2xl font-bold text-center mb-4">Edit Movie</h2>
 
         <div className="form-control">
           <label className="label">

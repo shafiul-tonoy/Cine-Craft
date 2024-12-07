@@ -80,6 +80,8 @@ export default function Details() {
       });
   };
 
+  
+
   return (
     <div className="w-full md:w-10/12 md:mx-auto p-5 my-5">
       <div className="card lg:card-side bg-base-100 shadow-xl">
@@ -99,6 +101,9 @@ export default function Details() {
           <div className="card-actions ">
             <button className="btn btn-success" onClick={handleFavorite}>
               Add to Favorite
+            </button>
+            <button className="btn btn-success" onClick={()=>navigate(`/updateMovies/${_id}`)}>
+              Update
             </button>
             <button className="btn btn-error" onClick={() => handleDelete(_id)}>
               Delete Movie

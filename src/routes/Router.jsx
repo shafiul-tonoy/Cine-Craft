@@ -12,7 +12,7 @@ import Favorite from "../pages/Favorite";
 import News from "../pages/News";
 import PrivateRoute from "./PrivateRoute";
 import Details from "../pages/Details";
-
+import UpdateMovies from "../pages/UpdateMovies";
 
 const router = createBrowserRouter([
   {
@@ -27,22 +27,44 @@ const router = createBrowserRouter([
       {
         path: "allMovies",
         element: <AllMovies />,
-        loader:() => fetch(`http://localhost:5000/movies`),
+        loader: () => fetch(`http://localhost:5000/movies`),
       },
       {
         path: "addMovies",
-        element: <PrivateRoute><AddMovies /></PrivateRoute>  ,
+        element: (
+          <PrivateRoute>
+            <AddMovies />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "updateMovies/:id",
+        element: (
+          <PrivateRoute>
+            <UpdateMovies />
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/movies/${params.id}`),
       },
       {
         path: "details/:id",
-        element: <PrivateRoute><Details /></PrivateRoute>  ,
-        loader:({params}) => fetch(`http://localhost:5000/movies/${params.id}`),
+        element: (
+          <PrivateRoute>
+            <Details />
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/movies/${params.id}`),
       },
       {
         path: "favorite",
-        element: <PrivateRoute><Favorite /></PrivateRoute>,       
+        element: (
+          <PrivateRoute>
+            <Favorite />
+          </PrivateRoute>
+        ),
         // loader:({params}) => fetch(`http://localhost:5000/favorites/${params.email}`),
-       
       },
       {
         path: "news",
