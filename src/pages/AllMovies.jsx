@@ -1,9 +1,11 @@
 import { useLoaderData } from "react-router-dom";
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 export default function AllMovies() {
   const data = useLoaderData();
   const [search, setSearch] = useState("");
+  const navigate = useNavigate();
 
   // Filter movies based on the search term
   const filteredMovies = data.filter((movie) =>
@@ -41,7 +43,7 @@ export default function AllMovies() {
                     <img
                       src={movie.posterUrl}
                       alt={movie.title}
-                      className="h-full w-full object-cover object-center"
+                      className="h-full w-full object-cover object-top"
                     />
                   </figure>
                   {/* Movie Details */}
@@ -62,7 +64,7 @@ export default function AllMovies() {
                       <strong>Rating:</strong> {movie.rating} (Out of 5)
                     </p>
                     <div className="card-actions mt-4 mx-auto">
-                      <button className="btn btn-primary">See Details</button>
+                      <button className="btn btn-primary" onClick ={()=>navigate(`/details/${movie._id}`)}>See Details</button>
                     </div>
                   </div>
                 </div>
