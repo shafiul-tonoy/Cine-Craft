@@ -1,10 +1,12 @@
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
 import Swal from "sweetalert2";
+import { AuthContext } from "../providers/AuthProvider";
 
 export default function Details() {
   const navigate = useNavigate();
-
+  const { user } = useContext(AuthContext);
   const {
     _id,
     title,
@@ -33,7 +35,7 @@ export default function Details() {
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount) {
-              navigate("/allMovies")  
+              navigate("/allMovies");
               Swal.fire({
                 title: "Deleted!",
                 text: "Your file has been deleted.",
@@ -43,6 +45,39 @@ export default function Details() {
           });
       }
     });
+  };
+
+  const handleFavorite = () => {
+    const data = {
+      userEmail: user.email,
+      title,
+      posterUrl,
+      genre,
+      duration,
+      releaseYear,
+      summary,
+      rating,
+    };
+    fetch("http://localhost:5000/favorites", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          navigate(`/favorite`);
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Successful",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
   };
 
   return (
@@ -62,7 +97,9 @@ export default function Details() {
           </div>
 
           <div className="card-actions ">
-            <button className="btn btn-success">Add to Favorite</button>
+            <button className="btn btn-success" onClick={handleFavorite}>
+              Add to Favorite
+            </button>
             <button className="btn btn-error" onClick={() => handleDelete(_id)}>
               Delete Movie
             </button>

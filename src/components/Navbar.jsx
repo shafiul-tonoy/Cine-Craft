@@ -2,7 +2,7 @@ import { Link, NavLink } from "react-router-dom";
 import ThemeToggle from "./ThemeToggle";
 import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
-import { PiSignOutLight, PiSignInLight  } from "react-icons/pi";
+import { PiSignOutLight, PiSignInLight } from "react-icons/pi";
 
 export default function Navbar() {
   const { user, logout } = useContext(AuthContext);
@@ -73,31 +73,27 @@ export default function Navbar() {
         <ul className="menu menu-horizontal px-1">{navItems}</ul>
       </div>
       <div className="navbar-end">
-      {user && user?.email ? (
-              <div className="flex items-center gap-1">
-                <div
-                  className="tooltip  tooltip-left"
-                  data-tip={user.displayName}
-                >
-                  <img
-                    src={user.photoURL}
-                    alt="image"
-                    className="w-10 h-10 rounded-full object-cover object-top"
-                  ></img>
-                </div>
-                <button className="btn btn-ghost text-linksColor" onClick={logout}>
-                  Logout
-                  <PiSignOutLight  />
-                </button>
-              </div>
-            ) : (
-              <Link
-                to="/login"
-                className="btn btn-ghost "
-              > <PiSignInLight size="18" />
-                  <span className= 'text-linksColor' >Login</span>
-              </Link>
-            )}
+        {user && user?.email ? (
+          <div className="flex items-center gap-1">
+            <div className="tooltip  tooltip-left" data-tip={user.displayName}>
+              <img
+                src={user.photoURL}
+                alt="image"
+                className="w-10 h-10 rounded-full object-cover object-top"
+              ></img>
+            </div>
+            <button className="btn btn-ghost text-linksColor" onClick={logout}>
+              Logout
+              <PiSignOutLight />
+            </button>
+          </div>
+        ) : (
+          <Link to="/login" className="btn btn-ghost ">
+            {" "}
+            <PiSignInLight size="18" />
+            <span className="text-linksColor">Login</span>
+          </Link>
+        )}
         <ThemeToggle />
       </div>
     </div>
