@@ -1,7 +1,8 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 
 export default function Home() {
   const movies = useLoaderData();
+  const navigate = useNavigate()
   return (
     <div className="w-full md:w-10/12 md:mx-auto p-5">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
@@ -23,7 +24,7 @@ export default function Home() {
                 <p>Rating: {movie.rating} (Out of 5)</p>
               </div>
               <div className="card-actions">
-                <button className="btn btn-primary">Buy Now</button>
+                <button className="btn btn-primary" onClick ={()=>navigate(`/details/${movie._id}`)}>Details</button>
               </div>
             </div>
           </div>

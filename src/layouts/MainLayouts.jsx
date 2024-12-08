@@ -10,7 +10,7 @@ export default function MainLayouts() {
       <header>
         <Navbar />
       </header>
-      <main>
+      <main className= 'font-merriweather' >
         <Outlet />
       </main>
       <footer>
