@@ -80,33 +80,63 @@ export default function Details() {
       });
   };
 
-  
-
   return (
-    <div className="w-full md:w-10/12 md:mx-auto p-5 my-5">
-      <div className="card lg:card-side bg-base-100 shadow-xl">
-        <figure>
-          <img src={posterUrl} alt="Album" />
+    <div className="w-full md:w-10/12 md:mx-auto p-5 my-5 lg:h-[75vh] flex items-center">
+      <div className="card lg:card-side bg-base-100 shadow-xl max-w-4xl mx-auto ">
+        {/* Movie Poster */}
+        <figure className="w-full lg:w-1/3">
+          <img
+            src={posterUrl}
+            alt="Movie Poster"
+            className="object-cover h-full rounded-l-md"
+          />
         </figure>
-        <div className="card-body space-y-3">
-          <h2 className="card-title">{title}</h2>
-          <div>
-            <p>Genre: {genre}</p>
-            <p>Duration: {duration}</p>
-            <p>Release Year: {releaseYear}</p>
-            <p>Rating : {rating} (Out of 5)</p>
-            <p>Plot Summary: {summary}</p>
+
+        {/* Card Body */}
+        <div className="card-body p-6 lg:w-2/3 space-y-4">
+          {/* Movie Title */}
+          <h2 className="card-title text-2xl font-bold">
+            {title}
+          </h2>
+
+          {/* Movie Details */}
+          <div className="space-y-2">
+            <p>
+              <span className="font-semibold">Genre:</span> {genre}
+            </p>
+            <p>
+              <span className="font-semibold">Duration:</span> {duration} min
+            </p>
+            <p>
+              <span className="font-semibold">Release Year:</span> {releaseYear}
+            </p>
+            <p>
+              <span className="font-semibold">Rating:</span> {rating} (Out of 5)
+            </p>
+            <p className="line-clamp-3">
+              <span className="font-semibold">Plot Summary:</span> {summary}
+            </p>
           </div>
 
-          <div className="card-actions ">
+          {/* Action Buttons */}
+          <div className="card-actions flex-wrap gap-4">
             <button className="btn btn-success" onClick={handleFavorite}>
               Add to Favorite
             </button>
-            <button className="btn btn-success" onClick={()=>navigate(`/updateMovies/${_id}`)}>
+            <button
+              className="btn btn-info"
+              onClick={() => navigate(`/updateMovies/${_id}`)}
+            >
               Update
             </button>
             <button className="btn btn-error" onClick={() => handleDelete(_id)}>
               Delete Movie
+            </button>
+            <button
+              className="btn btn-primary"
+              onClick={() => navigate("/allMovies")}
+            >
+              All Movies
             </button>
           </div>
         </div>

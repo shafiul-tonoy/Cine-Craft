@@ -60,7 +60,7 @@ export default function AddMovies() {
         className="p-6 bg-white shadow-md rounded-md max-w-md mx-auto space-y-4"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <h2 className="text-2xl font-bold text-center mb-4">Update Movie</h2>
+        <h2 className="text-2xl font-bold text-center mb-4">Add Movie</h2>
 
         <div className="form-control">
           <label className="label">
