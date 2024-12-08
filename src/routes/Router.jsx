@@ -1,18 +1,18 @@
 import { createBrowserRouter } from "react-router-dom";
 import MainLayouts from "../layouts/MainLayouts";
 import ErrorPage from "../pages/ErrorPage";
-import Login from "../pages/Login";
 import Home from "../pages/home";
-import Register from "../pages/Register";
+import Login from "../pages/Login";
 import PasswordReset from "../pages/PasswordReset";
+import Register from "../pages/Register";
 
-import AllMovies from "../pages/AllMovies";
 import AddMovies from "../pages/AddMovies";
+import AllMovies from "../pages/AllMovies";
+import Details from "../pages/Details";
 import Favorite from "../pages/Favorite";
 import News from "../pages/News";
-import PrivateRoute from "./PrivateRoute";
-import Details from "../pages/Details";
 import UpdateMovies from "../pages/UpdateMovies";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -23,12 +23,12 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-        loader: () => fetch(`http://localhost:5000`),
+        loader: () => fetch(`https://cine-craft-server.vercel.app`),
       },
       {
         path: "allMovies",
         element: <AllMovies />,
-        loader: () => fetch(`http://localhost:5000/movies`),
+        loader: () => fetch(`https://cine-craft-server.vercel.app/movies`),
       },
       {
         path: "addMovies",
@@ -46,7 +46,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/movies/${params.id}`),
+          fetch(`https://cine-craft-server.vercel.app/movies/${params.id}`),
       },
       {
         path: "details/:id",
@@ -56,7 +56,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/movies/${params.id}`),
+          fetch(`https://cine-craft-server.vercel.app/movies/${params.id}`),
       },
       {
         path: "favorite",
@@ -65,7 +65,7 @@ const router = createBrowserRouter([
             <Favorite />
           </PrivateRoute>
         ),
-        // loader:({params}) => fetch(`http://localhost:5000/favorites/${params.email}`),
+        // loader:({params}) => fetch(`https://cine-craft-server.vercel.app/favorites/${params.email}`),
       },
       {
         path: "news",

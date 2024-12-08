@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../providers/AuthProvider";
-import Loading from "../components/Loading";
-import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import Loading from "../components/Loading";
+import { AuthContext } from "../providers/AuthProvider";
 
 export default function Favorite() {
   const { user } = useContext(AuthContext);
@@ -12,7 +12,7 @@ export default function Favorite() {
   const navigate = useNavigate();
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:5000/favorites/${user.email}`)
+      fetch(`https://cine-craft-server.vercel.app/favorites/${user.email}`)
         .then((response) => {
           if (!response.ok) {
             throw new Error("Failed to fetch favorites");
@@ -49,7 +49,7 @@ export default function Favorite() {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/favorites/${id}`, {
+        fetch(`https://cine-craft-server.vercel.app/favorites/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

@@ -1,21 +1,17 @@
-import { useForm, Controller } from "react-hook-form";
-import { useNavigate } from 'react-router-dom';
-import RatingComponent from "../components/RatingComponent";
 import { useContext } from "react";
+import { Controller, useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import RatingComponent from "../components/RatingComponent";
 import { AuthContext } from "../providers/AuthProvider";
-import Swal from 'sweetalert2'
-
 
 export default function AddMovies() {
-
-  
-
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const {
     register,
     handleSubmit,
-    watch,   
+    watch,
     reset,
     control,
     formState: { errors },
@@ -24,27 +20,26 @@ export default function AddMovies() {
   const onSubmit = (data) => {
     const updatedData = { ...data, email: user.email };
 
-    fetch("http://localhost:5000/movies", {
+    fetch("https://cine-craft-server.vercel.app/movies", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(updatedData),
     })
-    .then(res => res.json())
-    .then(data=>{
-      if (data.insertedId) {
-        navigate('/allMovies');
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Successful",
-          showConfirmButton: false,
-          timer: 1500
-        });
-        
-      }    
-    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          navigate("/allMovies");
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Successful",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
   };
 
   const genres = ["Action", "Comedy", "Drama", "Horror", "Sci-Fi", "Romance"];

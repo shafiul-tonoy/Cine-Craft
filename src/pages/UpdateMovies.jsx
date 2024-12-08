@@ -1,10 +1,9 @@
-import { useForm, Controller } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
-import { AuthContext } from "../providers/AuthProvider";
-import RatingComponent from "../components/RatingComponent";
+import { Controller, useForm } from "react-hook-form";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import { useLoaderData } from "react-router-dom";
+import RatingComponent from "../components/RatingComponent";
+import { AuthContext } from "../providers/AuthProvider";
 
 export default function UpdateMovies() {
   const movie = useLoaderData();
@@ -44,7 +43,7 @@ export default function UpdateMovies() {
   const onSubmit = (data) => {
     const updatedData = { ...data, email: user.email };
 
-    fetch(`http://localhost:5000/movies/${_id}`, {
+    fetch(`https://cine-craft-server.vercel.app/movies/${_id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -52,8 +51,7 @@ export default function UpdateMovies() {
       body: JSON.stringify(updatedData),
     })
       .then((res) => res.json())
-      .then((data) => {        
-        
+      .then((data) => {
         if (data.modifiedCount) {
           navigate("/allMovies");
           Swal.fire({

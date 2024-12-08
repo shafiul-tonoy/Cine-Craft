@@ -4,10 +4,10 @@ export default function News() {
       <h1 className="font-bold text-xl">Top News</h1>
       <div className="card bg-base-100  shadow-xl">
         <div className="card-body">
-          <h2 className="card-title">
+          <h2 className="card-title my-3">
             Moana 2 is still making a splash at the domestic box office.
           </h2>
-          <p>
+          <p className= 'p-5' >
             The Disney animated sequel added $11.7 million on Friday, on its way
             to $50.8 million for its second weekend of release. After setting a
             new Thanksgiving box office record last week with $225 million over
@@ -23,10 +23,10 @@ export default function News() {
       </div>
       <div className="card bg-base-100  shadow-xl">
         <div className="card-body">
-          <h2 className="card-title">
+          <h2 className="card-title my-3">
             Conclave Gets Peacock Streaming Release Date
           </h2>
-          <p>
+          <p className= 'p-5'>
             “Conclave” fans will soon be able to choose their own Pope from the
             comfort of their couches. The buzzy Focus Features film will be
             available to stream on Peacock on Dec. 13. stream 'conclave' on
@@ -46,11 +46,11 @@ export default function News() {
       </div>
       <div className="card bg-base-100  shadow-xl">
         <div className="card-body">
-          <h2 className="card-title">
+          <h2 className="card-title my-3">
             Crunchyroll, Sony Pictures to Release ‘Attack on Titan: The Last
             Attack’ in North American Cinemas
           </h2>
-          <p>
+          <p className= 'p-5'>
             Anime streamer Crunchyroll has snatched up theatrical rights for
             North America and select international territories for the dark
             fantasy omnibus movie Attack on Titan: The Last Attack. Crunchyroll

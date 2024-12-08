@@ -1,6 +1,5 @@
-import { useLoaderData, useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
 import { useContext } from "react";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../providers/AuthProvider";
 
@@ -29,7 +28,7 @@ export default function Details() {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/movies/${_id}`, {
+        fetch(`https://cine-craft-server.vercel.app/movies/${_id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -58,7 +57,7 @@ export default function Details() {
       summary,
       rating,
     };
-    fetch("http://localhost:5000/favorites", {
+    fetch("https://cine-craft-server.vercel.app/favorites", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -95,9 +94,7 @@ export default function Details() {
         {/* Card Body */}
         <div className="card-body p-6 lg:w-2/3 space-y-4">
           {/* Movie Title */}
-          <h2 className="card-title text-2xl font-bold">
-            {title}
-          </h2>
+          <h2 className="card-title text-2xl font-bold">{title}</h2>
 
           {/* Movie Details */}
           <div className="space-y-2">
