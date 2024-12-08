@@ -5,8 +5,10 @@ export default function Footer() {
         <aside>
           <h1 className= 'text-2xl font-extrabold font-cinzel' >Cine Craft</h1>
           <p>
-            Cine Craft Ltd.            
+            Cine Craft Ltd.  
+                     
           </p>
+          <p>Email: cine.craft@gmail.com </p>
           <p>Copyright © {new Date().getFullYear()} - All right reserved</p>
         </aside>
         <nav>
