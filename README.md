@@ -2,7 +2,7 @@
 
 Cine Craft is a dynamic movie portal that allows users to browse, create, update, and manage their favorite movies. With robust authentication and a MongoDB database, it provides a seamless experience for movie enthusiasts.
 
-## Live link
+## [Live link](https://shafiul-a10.web.app/)
 
 ## Features
 
