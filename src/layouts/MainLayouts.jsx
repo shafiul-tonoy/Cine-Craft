@@ -10,6 +10,7 @@ export default function MainLayouts() {
       <header>
         <Navbar />
       </header>
+      <hr />
       <main className= 'font-merriweather' >
         <Outlet />
       </main>

@@ -67,12 +67,14 @@ export default function Navbar() {
             {navItems}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl font-cinzel md:text-2xl">Cine Craft</a>
+        <a className="btn btn-ghost text-xl font-cinzel md:text-2xl">
+          Cine Craft
+        </a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{navItems}</ul>
       </div>
-      <div className="navbar-end">
+      <div className="navbar-end flex flex-col md:flex-row">
         {user && user?.email ? (
           <div className="flex items-center gap-1">
             <div className="tooltip  tooltip-left" data-tip={user.displayName}>
@@ -82,20 +84,28 @@ export default function Navbar() {
                 className="w-10 h-10 rounded-full object-cover object-top"
               ></img>
             </div>
+
             <button className="btn btn-ghost text-linksColor" onClick={logout}>
               Logout
               <PiSignOutLight />
             </button>
           </div>
         ) : (
-          <Link to="/login" className="btn btn-ghost ">
-            {" "}
-            <PiSignInLight size="18" />
-            <span className="text-linksColor">Login</span>
-          </Link>
+          <>
+            <Link to="/login" className="btn btn-ghost ">
+              {" "}
+              <PiSignInLight size="18" />
+              <span className="text-linksColor">Login</span>
+            </Link>
+            <Link to="/register" className="btn btn-ghost ">
+              {" "}
+              <span className="text-linksColor">Register</span>
+            </Link>
+          </>
         )}
         <ThemeToggle />
       </div>
+      
     </div>
   );
 }
